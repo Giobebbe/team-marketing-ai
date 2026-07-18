@@ -33,6 +33,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from estrai_piva import estrai_piva, valida_piva  # noqa: E402
 
 BASE_API = "https://company.openapi.com"
+# Con OPENAPI_SANDBOX=1 (ambiente o .env) si usa l'ambiente di test di Openapi:
+# credito virtuale e dati fittizi, utile finche' il KYC di produzione non e' approvato.
+BASE_API_SANDBOX = "https://test.company.openapi.com"
 URL_REGISTRAZIONE = "https://console.openapi.com/"
 MAX_CHIAMATE = 2
 COSTO_PER_CHIAMATA_EURO = 0.10  # stima prudente, dipende dal listino Openapi
@@ -182,6 +185,10 @@ def main():
     args = parser.parse_args()
 
     token = carica_chiave("OPENAPI_TOKEN")
+    base_api = BASE_API
+    if carica_chiave("OPENAPI_SANDBOX") == "1":
+        base_api = BASE_API_SANDBOX
+        print("ATTENZIONE: ambiente SANDBOX attivo, i dati restituiti sono di test.\n")
     if not token:
         print("Manca la chiave API di Openapi (variabile OPENAPI_TOKEN).")
         print("Impostala nell'ambiente oppure aggiungi la riga OPENAPI_TOKEN=... al file .env")
@@ -207,7 +214,7 @@ def main():
     contatore = ContatoreChiamate(MAX_CHIAMATE)
     try:
         # Chiamata 1: profilo aziendale dalla P.IVA.
-        risposta_profilo = chiama_api(f"{BASE_API}/IT-advanced/{piva}", token, contatore)
+        risposta_profilo = chiama_api(f"{base_api}/IT-advanced/{piva}", token, contatore)
         profilo = risposta_profilo.get("data", risposta_profilo)
         if isinstance(profilo, list):
             profilo = profilo[0] if profilo else {}
@@ -220,7 +227,13 @@ def main():
         fatturato = appiattisci(cerca_campo(profilo, CHIAVI_FATTURATO))
 
         # Chiamata 2: ricerca competitor con stesso ATECO nella stessa provincia.
-        parametri = {"limit": max(1, min(args.max, 50))}
+        # dataEnrichment e' OBBLIGATORIO per avere i dati: senza, tornano solo gli id.
+        # "start" = dataset base (denominazione, ATECO, sede); "advanced" costa di piu'.
+        parametri = {
+            "limit": max(1, min(args.max, 50)),
+            "dataEnrichment": "start",
+            "activityStatus": "ATTIVA",
+        }
         if ateco != "-":
             parametri["atecoCode"] = ateco
         if provincia != "-":
@@ -229,7 +242,7 @@ def main():
             print("Il profilo non contiene né codice ATECO né provincia: impossibile cercare competitor.")
             sys.exit(1)
 
-        url_ricerca = f"{BASE_API}/IT-search?{urllib.parse.urlencode(parametri)}"
+        url_ricerca = f"{base_api}/IT-search?{urllib.parse.urlencode(parametri)}"
         risposta_ricerca = chiama_api(url_ricerca, token, contatore)
         elenco = risposta_ricerca.get("data", risposta_ricerca)
         if not isinstance(elenco, list):

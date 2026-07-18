@@ -108,6 +108,8 @@ cp .env.example .env
 # apri .env e incolla le tue chiavi
 ```
 
+Nota su openapi.com: l'attivazione della Company API richiede una verifica d'identità (il registro imprese è un dato regolamentato). In attesa dell'approvazione puoi già provare tutto con la Sandbox gratuita: attivala dalla console, genera un token sandbox e metti `OPENAPI_SANDBOX=1` nel `.env`. Riceverai dati fittizi di test, con lo stesso identico flusso della produzione.
+
 ## Quanto costa
 
 Ogni script ha un tetto rigido di 1 o 2 chiamate API per esecuzione e stampa il costo stimato a fine run. Con le fasce gratuite dei tre servizi, un uso normale (qualche analisi a settimana) costa zero. Non ci sono chiamate nascoste né loop che consumano credito.
