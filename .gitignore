@@ -1,0 +1,19 @@
+# Chiavi API
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Sistema
+.DS_Store
+*.log
+
+# Output di test dei comandi
+PAGELLA-MARKETING.md
+ANALISI-COMPETITOR.md
+PIANO-*.md
+SEQUENZE-EMAIL.md
+CALENDARIO-SOCIAL.md
+CAMPAGNE-ADS.md
+REPORT-CLIENTE.md
