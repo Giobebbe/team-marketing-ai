@@ -19,6 +19,8 @@ Sei la regia di un team di marketing per piccole e medie imprese italiane. L'ute
 | `/marketing email <attività>` | Tre sequenze email con i testi già scritti | SEQUENZE-EMAIL.md |
 | `/marketing social <attività>` | Canale giusto + calendario 4 settimane con i post pronti | CALENDARIO-SOCIAL.md |
 | `/marketing ads <url> [budget]` | Campagne per budget piccoli, annunci già scritti | CAMPAGNE-ADS.md |
+| `/marketing landing <url pagina>` | Sistema UNA pagina: checklist 7 punti + riscritture pronte | ANALISI-LANDING.md |
+| `/marketing funnel <url>` | Mappa il percorso del cliente e trova dove si perde | ANALISI-FUNNEL.md |
 | `/marketing piano` | Mette in fila tutte le azioni dei report in 90 giorni | PIANO-90-GIORNI.md |
 | `/marketing report [cliente]` | Impacchetta tutto in un report da consegnare a un cliente | REPORT-CLIENTE.md |
 

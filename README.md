@@ -33,6 +33,8 @@ Poi riavvia Claude Code. I comandi `/marketing` saranno disponibili in qualsiasi
 | `/marketing email` | Sequenze email pronte da caricare: benvenuto, nurturing, recupero clienti | `SEQUENZE-EMAIL.md` |
 | `/marketing social` | Calendario social di un mese con post già scritti | `CALENDARIO-SOCIAL.md` |
 | `/marketing ads` | Struttura campagne a pagamento: pubblici, budget, testi degli annunci | `CAMPAGNE-ADS.md` |
+| `/marketing landing` | Sistema una singola pagina: checklist 7 punti e riscritture pronte da incollare | `ANALISI-LANDING.md` |
+| `/marketing funnel` | Mappa il percorso del cliente e trova il punto esatto dove si perde | `ANALISI-FUNNEL.md` |
 | `/marketing competitor` | Concorrenti veri dal registro imprese e da Google Places, con confronto punto per punto | `ANALISI-COMPETITOR.md` |
 | `/marketing piano` | Piano operativo di 90 giorni: cosa fare, in che ordine, con quali risorse | `PIANO-90-GIORNI.md` |
 | `/marketing report` | Report presentabile a un cliente, pensato per consulenti e agenzie | `REPORT-CLIENTE.md` |
