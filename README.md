@@ -108,7 +108,7 @@ cp .env.example .env
 # apri .env e incolla le tue chiavi
 ```
 
-Nota su openapi.com: l'attivazione della Company API richiede una verifica d'identità (il registro imprese è un dato regolamentato). In attesa dell'approvazione puoi già provare tutto con la Sandbox gratuita: attivala dalla console, genera un token sandbox e metti `OPENAPI_SANDBOX=1` nel `.env`. Riceverai dati fittizi di test, con lo stesso identico flusso della produzione.
+Nota su openapi.com: l'attivazione della Company API richiede una verifica d'identità con un documento (il registro imprese è un dato regolamentato, la richiedono a tutti). Si fa una volta sola dalla console: Company API, Activate, carichi il documento, aspetti l'approvazione e poi generi il token. Nel frattempo la suite funziona comunque: senza token la parte competitor usa la ricerca web.
 
 ## Quanto costa
 
