@@ -2,6 +2,8 @@
 
 Una squadra di marketing completa dentro Claude Code, in italiano, pensata per le PMI italiane. Un comando, `/marketing`, e sei specialisti che analizzano la tua azienda, studiano i concorrenti veri e producono piani pronti da eseguire.
 
+![Panoramica di Team Marketing AI](assets/panoramica.png)
+
 ## Perché è diverso
 
 La maggior parte degli strumenti "AI per il marketing" tira a indovinare: chiedi un'analisi dei concorrenti e ti risponde con nomi plausibili inventati sul momento. Questa suite no. La parte competitor lavora su dati reali:
