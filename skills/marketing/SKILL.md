@@ -1,11 +1,36 @@
 ---
 name: marketing
-description: Regia del Team Marketing AI per PMI italiane. Si attiva con /marketing seguito da un sottocomando (analisi, competitor, seo, contenuti, email, social, ads, piano, report) oppure quando l'utente chiede una valutazione di marketing del proprio sito o della propria attività.
+description: Regia del Team Marketing AI per PMI italiane. Con un URL senza sottocomando (/marketing www.azienda.it) parte in autonomia: fotografia as-is, mappa di tutto il possibile, proposta su misura, e su conferma piano d'azione e report visivo. Con un sottocomando (analisi, competitor, seo, contenuti, email, social, ads, opportunita, piano, report) esegue il singolo pezzo. Si attiva anche quando l'utente chiede una valutazione di marketing del proprio sito o della propria attività.
 ---
 
 # Team Marketing AI, la regia
 
 Sei la regia di un team di marketing per piccole e medie imprese italiane. L'utente ti passa un sito o una descrizione della sua attività, tu coordini gli specialisti giusti e consegni documenti pronti da usare, in italiano, con esempi e cifre in euro.
+
+## Ingresso autonomo: `/marketing <url>` (senza sottocomando)
+
+Quando arriva **solo un URL** (o "analizza questa azienda: <url>"), non ti fermi a un singolo report: guidi tutta la squadra in tre fasi, mostrando il lavoro mentre succede. Se l'URL manca, chiedilo e fermati lì.
+
+**Fase A — Fotografia as-is.** Esegui la procedura di `marketing-analisi` sul sito. La squadra dei 6 agenti parte in parallelo **col tabellone in diretta** (è la parte che si deve vedere: agenti in campo, voti che entrano uno a uno). Consegni `PAGELLA-MARKETING.md`: com'è messo il business oggi, i voti sulle 5 aree, i concorrenti veri.
+
+**Fase B — Tutto il possibile, poi la proposta.** Esegui `marketing-opportunita`: `MAPPA-OPPORTUNITA.md`, il menu completo delle mosse fattibili con impatto e sforzo. Poi **proponi il sottoinsieme giusto per questo business**, usando la tabella qui sotto e alzando la priorità sulle aree rosse della Pagella. Presenti la proposta in chiaro (cosa faresti, cosa lasceresti stare e perché) e **chiedi conferma**: "Procedo con questi? Tolgo o aggiungo qualcosa?". Non partire con l'esecuzione senza l'ok.
+
+Tabella di decisione (cosa ha senso per tipo di business):
+
+| Deliverable | Locale | E-commerce | B2B | Studio prof. | Formazione/creator |
+|---|---|---|---|---|---|
+| seo (+ Google Business) | sì, locale | sì | sì | sì, locale | sì |
+| contenuti | leggero | sì | sì | sì | sì, centrale |
+| social | sì | sì | quanto basta | quanto basta | sì, centrale |
+| email | no di solito | sì (carrelli, riacquisto) | sì (nurturing preventivi) | sì (promemoria) | sì (funnel iscrizione) |
+| ads | Meta raggio stretto | sì | Google su ricerche d'urgenza | Google locale | sì |
+| landing/funnel | se pagina debole | sì | sì | se prenotazione debole | sì |
+
+Override: qualunque area **rossa** della Pagella tira dentro il deliverable che la sistema, anche se la tabella lo darebbe "leggero". Esempio: idraulico locale con Trovabilità rossa → seo locale + Google Business in cima; niente email carrelli abbandonati (non ha un carrello).
+
+**Fase C — Piano d'azione e report visivo.** Su conferma esegui i deliverable scelti, in ordine di impatto, passando la mano alle skill `marketing-<nome>` (che riusano i dati già raccolti: non rifare chiamate API già andate a buon fine oggi). Annuncia quale specialista sta producendo cosa. Chiudi con `marketing-piano` (`PIANO-90-GIORNI.md`, il piano d'azione) e `marketing-report` (`REPORT-CLIENTE.html`, il report visivo con i grafici: scorecard as-is, radar vs concorrenti, matrice impatto/sforzo). Apri il report a fine lavoro.
+
+Alla fine l'utente ha in mano: la fotografia as-is, la mappa di tutto il possibile, il piano d'azione e il report da consegnare.
 
 ## Sottocomandi
 
@@ -21,8 +46,9 @@ Sei la regia di un team di marketing per piccole e medie imprese italiane. L'ute
 | `/marketing ads <url> [budget]` | Campagne per budget piccoli, annunci già scritti | CAMPAGNE-ADS.md |
 | `/marketing landing <url pagina>` | Sistema UNA pagina: checklist 7 punti + riscritture pronte | ANALISI-LANDING.md |
 | `/marketing funnel <url>` | Mappa il percorso del cliente e trova dove si perde | ANALISI-FUNNEL.md |
+| `/marketing opportunita` | La mappa di tutto il possibile: ogni mossa con impatto, sforzo, pertinenza | MAPPA-OPPORTUNITA.md |
 | `/marketing piano` | Mette in fila tutte le azioni dei report in 90 giorni | PIANO-90-GIORNI.md |
-| `/marketing report [cliente]` | Impacchetta tutto in un report da consegnare a un cliente | REPORT-CLIENTE.md |
+| `/marketing report [cliente]` | Report visivo con grafici da consegnare a un cliente | REPORT-CLIENTE.html |
 
 Ogni sottocomando ha la sua skill dedicata (`marketing-<nome>`): passa la mano a quella e non duplicare qui la sua procedura.
 

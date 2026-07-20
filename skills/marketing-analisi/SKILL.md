@@ -50,9 +50,52 @@ Se manca l'url, chiedilo e fermati lì. Non partire con un'analisi generica.
 
    Ogni voto va da 1 a 10, una cifra decimale ammessa, e deve essere motivato con esempi presi dal sito, non con frasi generiche.
 
+   Al `analista-competitor` chiedi **in più**: una lettura a spanne del concorrente principale sulle stesse 5 aree (Messaggio, Trovabilità, Conversione, Concorrenza, Crescita), voto 1-10, **dichiarata come stima**. Serve al report per disegnare il radar cliente-vs-concorrente. Non inventare precisione: è un'impressione motivata da quello che si vede sul sito del concorrente, e va etichettata come stima nel report.
+
+   **Il tabellone (la squadra si deve vedere lavorare).** Questa è la parte che fa scena: non lanciare gli agenti in silenzio. Stampa a schermo, e aggiornalo man mano:
+
+   ```
+   Team Marketing AI  ·  esempio.it
+
+   Lettura del sito ............. fatto
+   Dati reali (registro/Places) . fatto  ·  3 concorrenti trovati
+   Tipo di business ............. attività locale
+
+   La squadra è in campo (6 agenti in parallelo):
+     · stratega-marketing ...... al lavoro
+     · specialista-seo ......... al lavoro
+     · esperto-conversioni ..... al lavoro
+     · analista-competitor ..... al lavoro
+     · copywriter-pmi .......... al lavoro
+     · media-buyer ............. al lavoro
+   ```
+
+   Man mano che ogni Task torna, riscrivi la sua riga con l'esito, prendendo il voto dal blocco `**Area: X. Voto: Y/10**` che l'agente restituisce:
+
+   ```
+     · stratega-marketing ...... fatto  ·  Messaggio 7.5  ·  Crescita 5.0
+     · specialista-seo ......... fatto  ·  Trovabilità 4.0
+     · esperto-conversioni ..... fatto  ·  Conversione 6.0
+     · analista-competitor ..... fatto  ·  Concorrenza 5.5
+     · copywriter-pmi .......... fatto  ·  3 testi riscritti
+     · media-buyer ............. fatto  ·  dove spendere: Google, non ancora Meta
+   ```
+
 5. **Sintesi e pagella.** Raccogli i voti, calcola il Voto Finale come media semplice delle 5 aree, assegna il semaforo per area (verde 8-10, giallo 5-7.9, rosso sotto 5) e scrivi `PAGELLA-MARKETING.md` nella directory corrente dell'utente, seguendo il template qui sotto. Le riscritture del copywriter e le note del media-buyer entrano nel dettaglio delle aree pertinenti.
 
-6. **Chiudi a terminale.** Voto finale, semaforo delle 5 aree in una riga, le 3 mosse della settimana, e il nome del file salvato.
+6. **Chiudi il tabellone a terminale.** L'ultima riga del tabellone è la Pagella: Voto Finale, semaforo delle 5 aree in una riga, le 3 mosse della settimana, e il nome del file salvato.
+
+   ```
+   PAGELLA  ·  Voto Finale 5.6  (giallo)
+   Messaggio 7.5 🟡  ·  Trovabilità 4.0 🔴  ·  Conversione 6.0 🟡  ·  Concorrenza 5.5 🟡  ·  Crescita 5.0 🟡
+
+   Le 3 mosse di questa settimana:
+     1. ...
+     2. ...
+     3. ...
+
+   Salvato: PAGELLA-MARKETING.md
+   ```
 
 ## Variante rapida
 
@@ -82,6 +125,14 @@ Regola d'oro dei numeri: MAI inventare stime di fatturato o di impatto in euro. 
 **Sito:** www.esempio.it
 **Data:** 18 luglio 2026
 **Tipo di business:** attività locale
+
+## Fotografia attuale (com'è oggi)
+
+- **Cosa vende e a chi:** [una-due righe: prodotto/servizio e cliente tipo, con le parole del sito]
+- **Canali attivi oggi:** [da dove arrivano i clienti adesso: scheda Google, passaparola, social, ads... solo quelli che esistono davvero]
+- **Dove si perdono i clienti:** [il punto più debole del percorso, in una riga: "trovano il sito ma il telefono è nascosto nel footer"]
+
+Questa è la situazione di partenza. La pagella qui sotto la mette in voti.
 
 ## La pagella
 
@@ -132,6 +183,18 @@ Confronto puntuale con i concorrenti reali della tabella sotto: cosa fanno megli
 | Nome | Dove | Fonte | Note |
 |-|-|-|-|
 | ... | ... | Registro imprese / Google Places / WebSearch | ... |
+
+## Confronto col concorrente principale (stima)
+
+Lettura a spanne del concorrente più forte sulle 5 aree, per il confronto del report. Sono **stime dichiarate**, non misure: servono a capire dove sei avanti e dove indietro, non a dare voti ufficiali a un'azienda che non hai analizzato a fondo.
+
+| Area | Tu | [Nome concorrente] |
+|-|-|-|
+| Messaggio | 7.5 | 6 |
+| Trovabilità | 4.0 | 7 |
+| Conversione | 6.0 | 5 |
+| Concorrenza | 5.5 | 6 |
+| Crescita | 5.0 | 6 |
 
 ## Ipotesi dichiarate
 

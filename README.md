@@ -1,6 +1,6 @@
 # Team Marketing AI
 
-Una squadra di marketing completa dentro Claude Code, in italiano, pensata per le PMI italiane. Un comando, `/marketing`, e sei specialisti che analizzano la tua azienda, studiano i concorrenti veri e producono piani pronti da eseguire.
+Una squadra di marketing completa dentro Claude Code, in italiano, pensata per le PMI italiane. **Incolli il link di un'azienda e la squadra parte da sola**: sei specialisti analizzano il sito in parallelo, studiano i concorrenti veri, ti mostrano com'è messa oggi, ti propongono cosa fare e ti consegnano un report visivo pronto per il cliente.
 
 ![Panoramica di Team Marketing AI](assets/panoramica.png)
 
@@ -15,6 +15,16 @@ La maggior parte degli strumenti "AI per il marketing" tira a indovinare: chiedi
 
 Il risultato è una fotografia del mercato basata su fonti verificabili, non su testo generato che suona bene.
 
+## Il flusso completo, da un solo link
+
+Scrivi `/marketing www.azienda.it` (senza sottocomando) e la squadra lavora in tre fasi, mostrandoti tutto mentre succede:
+
+1. **Fotografia as-is.** I 6 agenti partono in parallelo, con il tabellone in diretta: li vedi lavorare e vedi entrare i voti uno a uno. Esce la Pagella Marketing: com'è messa l'azienda oggi, sulle 5 aree, coi concorrenti veri.
+2. **Tutto il possibile, poi la proposta.** La squadra elenca ogni mossa fattibile con impatto e sforzo (la mappa delle opportunità), poi ti propone il sottoinsieme giusto per quel business e aspetta il tuo ok. Un idraulico di quartiere non si sente proporre le email dei carrelli abbandonati.
+3. **Piano d'azione e report visivo.** Su conferma produce il piano a 90 giorni e un **report HTML con i grafici** (`REPORT-CLIENTE.html`): scorecard della situazione attuale, radar del confronto coi concorrenti, matrice di cosa conviene fare e cosa no. Si apre nel browser, si stampa in PDF, si consegna al cliente.
+
+Preferisci lavorare a pezzi? Ogni fase è anche un comando a sé (vedi sotto).
+
 ## Installazione
 
 ```bash
@@ -25,7 +35,9 @@ bash install.sh
 
 Poi riavvia Claude Code. I comandi `/marketing` saranno disponibili in qualsiasi progetto.
 
-## I comandi
+## I comandi, uno per uno
+
+Oltre al flusso autonomo qui sopra, ogni pezzo si lancia da solo quando ti serve solo quello.
 
 | Comando | Cosa fa | File prodotto |
 |---|---|---|
@@ -38,8 +50,9 @@ Poi riavvia Claude Code. I comandi `/marketing` saranno disponibili in qualsiasi
 | `/marketing landing` | Sistema una singola pagina: checklist 7 punti e riscritture pronte da incollare | `ANALISI-LANDING.md` |
 | `/marketing funnel` | Mappa il percorso del cliente e trova il punto esatto dove si perde | `ANALISI-FUNNEL.md` |
 | `/marketing competitor` | Concorrenti veri dal registro imprese e da Google Places, con confronto punto per punto | `ANALISI-COMPETITOR.md` |
+| `/marketing opportunita` | La mappa di tutto il possibile: ogni mossa con impatto, sforzo e se ha senso per quel business | `MAPPA-OPPORTUNITA.md` |
 | `/marketing piano` | Piano operativo di 90 giorni: cosa fare, in che ordine, con quali risorse | `PIANO-90-GIORNI.md` |
-| `/marketing report` | Report presentabile a un cliente, pensato per consulenti e agenzie | `REPORT-CLIENTE.md` |
+| `/marketing report` | Report visivo con grafici (scorecard, radar vs concorrenti, matrice impatto/sforzo) da consegnare al cliente | `REPORT-CLIENTE.html` |
 
 ## La squadra
 
@@ -69,10 +82,10 @@ Il modello di valutazione è unico per tutta la suite: 5 aree, voto da 1 a 10, s
 Apri Claude Code in una cartella qualsiasi e scrivi:
 
 ```
-/marketing analisi www.esempio-azienda.it
+/marketing www.esempio-azienda.it
 ```
 
-I 6 agenti partono in parallelo: uno legge il sito ed estrae la Partita IVA, uno interroga il registro imprese e cerca i concorrenti, uno controlla la trovabilità, uno valuta testi e offerta, uno il percorso di conversione, uno le opportunità sui canali a pagamento. Alla fine trovi `PAGELLA-MARKETING.md` nella cartella, con una struttura tipo:
+I 6 agenti partono in parallelo, e li vedi lavorare in diretta: uno legge il sito ed estrae la Partita IVA, uno interroga il registro imprese e cerca i concorrenti, uno controlla la trovabilità, uno valuta testi e offerta, uno il percorso di conversione, uno le opportunità sui canali a pagamento. Finita la fotografia trovi `PAGELLA-MARKETING.md` nella cartella, con una struttura tipo:
 
 ```
 PAGELLA MARKETING - Esempio Azienda Srl
@@ -87,7 +100,7 @@ Voto complessivo: 5/10
 Le 3 cose da fare subito: ...
 ```
 
-Ogni voto è motivato e ogni raccomandazione dice cosa fare, non solo cosa non va.
+Ogni voto è motivato e ogni raccomandazione dice cosa fare, non solo cosa non va. Da qui la squadra ti mostra la mappa di tutto il possibile, ti propone su cosa concentrarti e, dopo il tuo ok, ti consegna il piano a 90 giorni e il report visivo `REPORT-CLIENTE.html`.
 
 ## Per chi è
 
