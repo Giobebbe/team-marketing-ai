@@ -245,9 +245,9 @@ def generate(data, out):
     comp_p = data.get("competitor_principale"); comps = data.get("competitors", [])
     if comp_p or comps:
         E.append(opener("IV", "Voi e i concorrenti")); E.append(Spacer(1, 8))
-        E.append(Paragraph("Il confronto non giudica il prodotto, ma quanto lo si fa sapere. Ecco come vi collocate "
-                           "rispetto al concorrente più forte, area per area, e chi sono i concorrenti reali trovati "
-                           "sui registri e su Google Places.", S["body"]))
+        E.append(Paragraph("Il confronto non giudica il prodotto, ma quanto lo si fa sapere. Prima il colpo d'occhio "
+                           "rispetto al concorrente più forte, area per area; poi il testa a testa sui fattori che "
+                           "contano; infine chi sono i concorrenti reali trovati sui registri e su Google Places.", S["body"]))
         E.append(Spacer(1, 12))
         if comp_p and aree:
             names = [a["nome"] for a in aree]; tu = [float(a["voto"]) for a in aree]
@@ -256,6 +256,11 @@ def generate(data, out):
             ct = Table([[radar(names, tu, comp_p.get("voti")), right]], colWidths=[210, 286])
             ct.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("LEFTPADDING", (0, 0), (0, 0), 0), ("LEFTPADDING", (1, 0), (1, 0), 18)]))
             E.append(ct); E.append(Spacer(1, 16))
+        conf = data.get("confronto")
+        if conf and conf.get("righe"):
+            E.append(Paragraph("CONFRONTO TESTA A TESTA", S["h3"]))
+            E.append(Paragraph("Voi e i concorrenti nominati, fattore per fattore. La colonna evidenziata siete voi.", S["small"]))
+            E.append(Spacer(1, 8)); E.append(confronto_table(cliente, conf, S)); E.append(Spacer(1, 16))
         if comps:
             E.append(Paragraph("CONCORRENTI REALI TROVATI", S["h3"]))
             cd = [["Nome", "Dove", "Fonte", "Note"]]
@@ -405,6 +410,35 @@ def _tbl_style(head=False, center0=False):
         cmd += [("ALIGN", (0, 0), (0, -1), "CENTER")]
     return TableStyle(cmd)
 
+def confronto_table(cliente, conf, S):
+    """Griglia testa a testa: righe = fattori, colonne = voi + i concorrenti nominati."""
+    conc = (conf.get("concorrenti") or [])[:3]
+    righe = conf.get("righe") or []
+    ncol = 1 + len(conc)
+    fw = 86
+    dw = (496 - fw) / ncol
+    widths = [fw] + [dw] * ncol
+    head = [Paragraph(f'<font name="{SANS_MED}" color="{hexcol(C["accent"])}">Fattore</font>', S["cell"]),
+            Paragraph(f'<font name="{SANS_MED}" color="{hexcol(C["accent"])}">{cliente}</font>', S["cell"])]
+    for c in conc:
+        head.append(Paragraph(f'<font name="{SANS_MED}" color="{hexcol(C["accent"])}">{c}</font>', S["cell"]))
+    rows = [head]
+    for r in righe:
+        loro = r.get("loro", [])
+        row = [Paragraph(f'<font name="{SANS_MED}" color="{hexcol(C["ink"])}">{r.get("fattore","")}</font>', S["cell"]),
+               Paragraph(r.get("tu", "—"), S["cell"])]
+        for i in range(len(conc)):
+            row.append(Paragraph(loro[i] if i < len(loro) else "—", S["cell"]))
+        rows.append(row)
+    t = Table(rows, colWidths=widths)
+    st = _tbl_style(head=True)
+    st.add("BACKGROUND", (1, 1), (1, -1), C["bone2"])   # la colonna "voi" evidenziata
+    st.add("LEFTPADDING", (0, 0), (-1, -1), 6)
+    st.add("RIGHTPADDING", (0, 0), (-1, -1), 6)
+    st.add("LINEAFTER", (0, 0), (0, -1), 0.5, C["line"])
+    t.setStyle(st)
+    return t
+
 # ------------------------------------------------------------------ demo
 DEMO = {
     "cliente": "Caffè Aurelio", "autore": "Gentes AI", "data": "20/07/2026",
@@ -472,6 +506,29 @@ DEMO = {
         {"nome": "Nero Nobile", "dove": "Milano", "fonte": "Registro imprese", "note": "Abbonamento in evidenza, blog attivo"},
         {"nome": "Torrefazione Sole", "dove": "Bologna", "fonte": "Google Places", "note": "4,6/5, 210 recensioni, ritiro in sede"},
         {"nome": "Caffè del Borgo", "dove": "Modena", "fonte": "Google Places", "note": "Forte su Instagram, poco e-commerce"}],
+    "confronto": {
+        "concorrenti": ["Nero Nobile", "Torrefazione Sole", "Caffè del Borgo"],
+        "righe": [
+            {"fattore": "Posizionamento",
+             "tu": "Torrefazione artigianale dal 1987, laboratorio visitabile a Bologna. In home però una promessa generica: “il piacere del caffè italiano”.",
+             "loro": ["Specialty moderno, l'abbonamento al centro di tutto.",
+                      "Torrefazione locale storica, forte sul ritiro in sede.",
+                      "Marchio giovane, identità costruita su Instagram."]},
+            {"fattore": "Prezzi",
+             "tu": "Listino chiaro nello shop. La spedizione gratis sopra i 30 euro c'è ma non è dichiarata in alto.",
+             "loro": ["In linea coi vostri, abbonamento scontato in evidenza.",
+                      "Un po' più bassi, ma nessuna vendita online.",
+                      "Prezzi non pubblicati, vendita via messaggio."]},
+            {"fattore": "Riprova sociale",
+             "tu": "4,8/5 su 320 recensioni, meglio della media. Non si vedono in home.",
+             "loro": ["4,6/5, recensioni in home e blog attivo.",
+                      "4,6/5 su 210 recensioni, presenza locale forte.",
+                      "Tanti follower, poche recensioni verificabili."]},
+            {"fattore": "Contenuti",
+             "tu": "Belle foto del laboratorio. Nessun blog e schede prodotto scarne: mancano origine e tostatura.",
+             "loro": ["Blog attivo, guide alla preparazione, schede complete.",
+                      "Sito essenziale, contenuti fermi da tempo.",
+                      "Reel frequenti, quasi nulla sul sito."]}]},
     "opportunita": [
         {"n": 1, "mossa": "Home riscritta sul beneficio (freschezza, tostato a Bologna)", "impatto": "alto", "sforzo": "basso", "pertinente": "Sì, la home non lo dice"},
         {"n": 2, "mossa": "Email carrello abbandonato + post-acquisto", "impatto": "alto", "sforzo": "basso", "pertinente": "Sì, oggi nessun recupero"},
