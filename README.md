@@ -103,6 +103,25 @@ Le opportunità del Metodo 5 diventano priorità visive in una matrice 2×2, che
 
 Il report finale (`REPORT-CLIENTE.pdf`) è un documento editoriale multipagina: copertina, pagella a barre, analisi area per area con le evidenze citate, **radar del confronto coi concorrenti**, questa matrice, piano a 90 giorni, e la pagina di metodologia e fonti. Impaginato sempre allo stesso modo: tu compili i dati, lo script fa la grafica.
 
+### Il metodo dentro ogni comando
+
+I sei metodi sopra sono le fondamenta condivise. Oltre a quelli, ogni comando applica un suo procedimento specifico: lo trovi per esteso nel file della skill, qui in una riga così sai cosa aspettarti.
+
+| Comando | Il metodo, in breve |
+|---|---|
+| `analisi` | Pagella Marketing (Metodo 2): 6 agenti, 5 aree, voto motivato con esempi dal sito |
+| `competitor` | I concorrenti in 5 passi (Metodo 3): inquadra → fonte → guardali in faccia → dove vinci/perdi → mosse |
+| `seo` | Audit on-page → intento di ricerca → le 10 keyword coi volumi veri → piano contenuti 8 settimane (+ checklist Google Business per i locali) |
+| `contenuti` | 3 pilastri di contenuto, **un canale solo**, 12 idee (3 a settimana per 4 settimane) con aggancio e formato |
+| `email` | 3 sequenze pronte: Benvenuto (5 email in 14 giorni), Recupero carrello o preventivo (3 in 5 giorni), Riattivazione (3) |
+| `social` | Un canale scelto per tipo di business, calendario 4 settimane, mix fisso "2 post utili + 1 di fiducia" a settimana |
+| `ads` | Una campagna sola, budget 300-1.500 €, 3 annunci (problema / prova / offerta), metriche della prima settimana e regola di stop |
+| `landing` | La checklist dei 7 punti dall'alto verso il basso + le riscritture pronte da incollare |
+| `funnel` | Mappa del percorso del cliente → dove si rompe → le mosse in ordine → i 3 numeri da guardare ogni settimana |
+| `opportunita` | La mappa impatto × sforzo × pertinenza (Metodo 5) |
+| `piano` | Matrice impatto/sforzo → 3 fasi temporali (settimane 1-2 / mese 1 / mesi 2-3), con le azioni scartate e il perché |
+| `report` | Assembla tutto nel PDF editoriale (Metodo 6): pagella, radar, matrice, piano |
+
 ## Come lavora, in un colpo d'occhio
 
 ```
