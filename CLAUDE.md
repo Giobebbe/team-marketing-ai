@@ -29,5 +29,6 @@ Nessuna dipendenza da installare: girano con Python 3 puro. Senza chiavi in `.en
 ## Regole
 
 - Stile italiano concreto, frasi che si direbbero a voce. MAI em-dash, ne' come trattino lungo ne' come doppio trattino usato da inciso.
+- Difetti tecnici di una pagina (modulo assente, bottone rotto, link morto, title sbagliato): mai dichiararli sulla sola base dell'HTML servito, molti siti si costruiscono col JavaScript. Controprova sulla pagina renderizzata con un gesto reale (Metodo 7 del README); senza browser, etichetta obbligatoria "osservato sull'HTML servito, non verificato dal vivo".
 - Mai committare `.env` o chiavi API in nessun file.
 - Ogni script mantiene il tetto di 1 o 2 chiamate API per esecuzione e la riga finale con il costo stimato del run. Se modifichi uno script, quel tetto e quella riga restano.

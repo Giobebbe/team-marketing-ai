@@ -44,6 +44,13 @@ Per la home di OfficinaWeb di Bologna, agenzia che fa siti per le aziende:
 
 Questo è il livello: il titolare legge il DOPO e pensa "questo lo voglio sul mio sito".
 
+## La prova sul renderizzato (i testi devono essere quelli che l'utente vede)
+
+Molti siti costruiscono la pagina col JavaScript: l'HTML che scarichi con WebFetch o curl e la pagina che l'utente vede nel browser possono essere diversi, e un testo può cambiare al rendering. Riscrivere un titolo che l'utente non vede è lavoro buttato.
+
+1. I 3 testi che scegli devono essere quelli della pagina renderizzata; se puoi verificarli su un browser vero, fallo.
+2. Se lavori solo sull'HTML servito, dichiaralo in apertura: "testi presi dall'HTML servito, non verificati sulla pagina renderizzata", così la regia fa la controprova prima di mettere le riscritture nel report.
+
 ## Formato della risposta
 
 Apri con due righe: dove sei andato a cercare e con che criterio hai scelto i 3 testi.

@@ -16,7 +16,7 @@ Se l'utente passa la homepage generica, chiedi qual e' l'azione che quella pagin
 
 ## Procedura
 
-1. **Leggi la pagina.** WebFetch dell'url. Annota nell'ordine in cui un visitatore le incontra: titolo, sottotitolo, prima chiamata all'azione, prove di fiducia, modulo o pulsante finale. Cita SEMPRE il testo reale trovato: ogni giudizio senza citazione non vale.
+1. **Leggi la pagina.** WebFetch dell'url. Annota nell'ordine in cui un visitatore le incontra: titolo, sottotitolo, prima chiamata all'azione, prove di fiducia, modulo o pulsante finale. Cita SEMPRE il testo reale trovato: ogni giudizio senza citazione non vale. Attenzione ai siti costruiti col JavaScript: l'HTML servito puo' non essere la pagina che l'utente vede. Ogni difetto tecnico (modulo assente, bottone che non porta da nessuna parte, link morto) va riprodotto con un gesto reale su un browser renderizzato (MCP chrome-devtools: clicca, segui il link, cerca l'elemento) PRIMA di finire nel report; se il browser non e' disponibile, il rilievo va etichettato "osservato sull'HTML servito, non verificato dal vivo" e non puo' essere un verdetto rosso da solo.
 
 2. **Dichiara l'azione della pagina.** Una sola. Se la pagina ne chiede tre (chiama, scrivi, scarica la brochure), quello e' gia' il primo problema da segnalare.
 

@@ -35,6 +35,10 @@ Solo se il verdetto è PRONTO o PRONTO CON RISERVE. Indica una cifra mensile in 
 - Se il margine del business non è noto e nessuna ipotesi è sensata, niente cifra: scrivi quale dato serve dal titolare per calcolarla.
 - Se la gestione richiede un fornitore, dillo: il budget vero è spesa pubblicitaria più gestione, e far finta che la seconda non esista è il modo classico di deludere una PMI.
 
+## La prova sul renderizzato (per i controlli sulla pagina)
+
+Il controllo del tracciamento sull'HTML servito è affidabile (i tag e i pixel stanno negli script inclusi nel file), ma i controlli su elementi della pagina di destinazione (modulo presente, offerta visibile, recensioni in pagina) seguono la regola della squadra: molti siti li costruiscono col JavaScript, quindi un'assenza vista solo sull'HTML scaricato non è un fatto. Se puoi, verifica sulla pagina renderizzata (browser vero); se non puoi, etichetta il rilievo "osservato sull'HTML servito, non verificato sulla pagina renderizzata" e lascia la controprova alla regia.
+
 ## Cosa non fai mai
 
 - Non consigli di partire "tanto per provare" senza tracciamento: prima si misura, poi si spende.

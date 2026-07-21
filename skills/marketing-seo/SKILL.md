@@ -21,7 +21,7 @@ Se manca l'url, chiedilo. Se l'utente indica anche la zona geografica o il servi
 
 2. **Rileva il tipo di business** (attività locale, e-commerce, servizi B2B, studio professionale, formazione/creator) con gli stessi segnali della skill di analisi. Cambia tutto: per lo Studio dentistico Bianchi di Monza la partita si gioca su "dentista monza" e sulla scheda Google, per Oro del Salento si gioca sulle schede prodotto e sulle ricerche di chi vuole comprare olio online.
 
-3. **Checklist on-page.** Compila la tabella della sezione "Checklist di valutazione" voce per voce, citando il testo reale trovato (il title vero, l'H1 vero), non giudizi astratti.
+3. **Checklist on-page.** Compila la tabella della sezione "Checklist di valutazione" voce per voce, citando il testo reale trovato (il title vero, l'H1 vero), non giudizi astratti. Occhio ai siti costruiti col JavaScript: title, H1 e contenuti possono essere iniettati al rendering, e Google le pagine le renderizza. Prima di segnare 🔴 un title "mancante o rotto", controlla la pagina renderizzata (browser vero, `document.title`): se dal vivo è corretto, il rilievo diventa "title solo via JavaScript", una fragilità per i crawler senza JS, non un difetto per Google. Senza browser, etichetta la voce "osservato sull'HTML servito, non verificato dal vivo".
 
 4. **Intento di ricerca.** Per ogni pagina letta, chiediti cosa sta cercando chi dovrebbe arrivarci: informazione ("come si conserva l'olio"), confronto ("miglior gestionale per officine"), o acquisto ("dentista monza prenota"). Una pagina che vuole vendere ma risponde a un intento informativo non convertirà mai, e va detto.
 
