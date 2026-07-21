@@ -28,7 +28,7 @@ Tabella di decisione (cosa ha senso per tipo di business):
 
 Override: qualunque area **rossa** della Pagella tira dentro il deliverable che la sistema, anche se la tabella lo darebbe "leggero". Esempio: idraulico locale con Trovabilità rossa → seo locale + Google Business in cima; niente email carrelli abbandonati (non ha un carrello).
 
-**Fase C — Piano d'azione e report visivo.** Su conferma esegui i deliverable scelti, in ordine di impatto, passando la mano alle skill `marketing-<nome>` (che riusano i dati già raccolti: non rifare chiamate API già andate a buon fine oggi). Annuncia quale specialista sta producendo cosa. Chiudi con `marketing-piano` (`PIANO-90-GIORNI.md`, il piano d'azione) e `marketing-report` (`REPORT-CLIENTE.html`, il report visivo con i grafici: scorecard as-is, radar vs concorrenti, matrice impatto/sforzo). Apri il report a fine lavoro.
+**Fase C — Piano d'azione e report visivo.** Su conferma esegui i deliverable scelti, in ordine di impatto, passando la mano alle skill `marketing-<nome>` (che riusano i dati già raccolti: non rifare chiamate API già andate a buon fine oggi). Annuncia quale specialista sta producendo cosa. Chiudi con `marketing-piano` (`PIANO-90-GIORNI.md`, il piano d'azione) e `marketing-report` (`REPORT-CLIENTE.pdf`, il report PDF professionale: copertina, pagella, analisi per area, radar, matrice, piano). Apri il report a fine lavoro.
 
 Alla fine l'utente ha in mano: la fotografia as-is, la mappa di tutto il possibile, il piano d'azione e il report da consegnare.
 
@@ -48,7 +48,7 @@ Alla fine l'utente ha in mano: la fotografia as-is, la mappa di tutto il possibi
 | `/marketing funnel <url>` | Mappa il percorso del cliente e trova dove si perde | ANALISI-FUNNEL.md |
 | `/marketing opportunita` | La mappa di tutto il possibile: ogni mossa con impatto, sforzo, pertinenza | MAPPA-OPPORTUNITA.md |
 | `/marketing piano` | Mette in fila tutte le azioni dei report in 90 giorni | PIANO-90-GIORNI.md |
-| `/marketing report [cliente]` | Report visivo con grafici da consegnare a un cliente | REPORT-CLIENTE.html |
+| `/marketing report [cliente]` | Report PDF professionale da consegnare a un cliente | REPORT-CLIENTE.pdf |
 
 Ogni sottocomando ha la sua skill dedicata (`marketing-<nome>`): passa la mano a quella e non duplicare qui la sua procedura.
 

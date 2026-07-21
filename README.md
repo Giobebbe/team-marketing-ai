@@ -21,7 +21,7 @@ Scrivi `/marketing www.azienda.it` (senza sottocomando) e la squadra lavora in t
 
 1. **Fotografia as-is.** I 6 agenti partono in parallelo, con il tabellone in diretta: li vedi lavorare e vedi entrare i voti uno a uno. Esce la Pagella Marketing: com'è messa l'azienda oggi, sulle 5 aree, coi concorrenti veri.
 2. **Tutto il possibile, poi la proposta.** La squadra elenca ogni mossa fattibile con impatto e sforzo (la mappa delle opportunità), poi ti propone il sottoinsieme giusto per quel business e aspetta il tuo ok. Un idraulico di quartiere non si sente proporre le email dei carrelli abbandonati.
-3. **Piano d'azione e report visivo.** Su conferma produce il piano a 90 giorni e un **report HTML con i grafici** (`REPORT-CLIENTE.html`): scorecard della situazione attuale, radar del confronto coi concorrenti, matrice di cosa conviene fare e cosa no. Si apre nel browser, si stampa in PDF, si consegna al cliente.
+3. **Piano d'azione e report PDF.** Su conferma produce il piano a 90 giorni e un **report PDF professionale** (`REPORT-CLIENTE.pdf`): copertina editoriale, pagella coi voti, analisi area per area, radar del confronto coi concorrenti, matrice di cosa conviene fare e cosa no, piano a 90 giorni. Pronto da consegnare al cliente.
 
 Preferisci lavorare a pezzi? Ogni fase è anche un comando a sé (vedi sotto).
 
@@ -52,7 +52,7 @@ Oltre al flusso autonomo qui sopra, ogni pezzo si lancia da solo quando ti serve
 | `/marketing competitor` | Concorrenti veri dal registro imprese e da Google Places, con confronto punto per punto | `ANALISI-COMPETITOR.md` |
 | `/marketing opportunita` | La mappa di tutto il possibile: ogni mossa con impatto, sforzo e se ha senso per quel business | `MAPPA-OPPORTUNITA.md` |
 | `/marketing piano` | Piano operativo di 90 giorni: cosa fare, in che ordine, con quali risorse | `PIANO-90-GIORNI.md` |
-| `/marketing report` | Report visivo con grafici (scorecard, radar vs concorrenti, matrice impatto/sforzo) da consegnare al cliente | `REPORT-CLIENTE.html` |
+| `/marketing report` | Report PDF professionale (copertina, pagella, radar, matrice, piano) da consegnare al cliente | `REPORT-CLIENTE.pdf` |
 
 ## La squadra
 
@@ -100,7 +100,7 @@ Voto complessivo: 5/10
 Le 3 cose da fare subito: ...
 ```
 
-Ogni voto è motivato e ogni raccomandazione dice cosa fare, non solo cosa non va. Da qui la squadra ti mostra la mappa di tutto il possibile, ti propone su cosa concentrarti e, dopo il tuo ok, ti consegna il piano a 90 giorni e il report visivo `REPORT-CLIENTE.html`.
+Ogni voto è motivato e ogni raccomandazione dice cosa fare, non solo cosa non va. Da qui la squadra ti mostra la mappa di tutto il possibile, ti propone su cosa concentrarti e, dopo il tuo ok, ti consegna il piano a 90 giorni e il report PDF `REPORT-CLIENTE.pdf`.
 
 ## Per chi è
 
@@ -137,13 +137,15 @@ Ogni script ha un tetto rigido di 1 o 2 chiamate API per esecuzione e stampa il 
 team-marketing-ai/
 ├── skills/          # le skill di Claude Code (una per comando)
 ├── squadra/         # i 6 agenti specializzati
-├── scripts/         # script Python, solo libreria standard
+├── scripts/         # script Python (dati reali in stdlib; generatore PDF con reportlab)
+├── assets/          # font (Cormorant, DM Sans) e immagine di copertina per il report PDF
+├── requirements.txt # reportlab (serve solo per il report PDF)
 ├── install.sh       # installazione
 ├── uninstall.sh     # rimozione pulita
 └── .env.example     # modello per le chiavi API
 ```
 
-Gli script sono Python 3 puro, zero dipendenze da installare.
+Gli script dei dati reali (registro, Places, volumi) sono Python 3 puro, zero dipendenze. Il solo report PDF (`/marketing report`) usa **reportlab**: `pip3 install reportlab` (o `pip3 install -r requirements.txt`).
 
 ## Licenza
 

@@ -1,0 +1,4 @@
+# Dipendenze Python di Team Marketing AI
+# Gli script dei dati reali (registro, Places, volumi) usano solo la stdlib.
+# reportlab serve solo per il report PDF (/marketing report).
+reportlab>=4.0
