@@ -101,7 +101,7 @@ Le opportunità del Metodo 5 diventano priorità visive in una matrice 2×2, che
 - **Fai subito** (impatto alto, sforzo basso) · **Pianifica** (impatto alto, sforzo alto)
 - **Opzionale** (impatto basso, sforzo basso) · **Lascia stare per ora** (impatto basso, sforzo alto)
 
-Il report finale (`REPORT-CLIENTE.pdf`) è un documento editoriale multipagina: copertina, pagella a barre, analisi area per area con le evidenze citate, **radar del confronto coi concorrenti**, questa matrice, piano a 90 giorni, e la pagina di metodologia e fonti. Impaginato sempre allo stesso modo: tu compili i dati, lo script fa la grafica.
+Il report finale (`REPORT-CLIENTE.pdf`) è un documento editoriale multipagina: copertina, pagella a barre, analisi area per area con le evidenze citate, **radar del confronto coi concorrenti** e **griglia testa a testa** (voi e i concorrenti nominati, fattore per fattore, con la vostra colonna evidenziata), questa matrice, piano a 90 giorni, e la pagina di metodologia e fonti. Impaginato sempre allo stesso modo: tu compili i dati, lo script fa la grafica.
 
 ### Il metodo dentro ogni comando
 
@@ -120,7 +120,7 @@ I sei metodi sopra sono le fondamenta condivise. Oltre a quelli, ogni comando ap
 | `funnel` | Mappa del percorso del cliente → dove si rompe → le mosse in ordine → i 3 numeri da guardare ogni settimana |
 | `opportunita` | La mappa impatto × sforzo × pertinenza (Metodo 5) |
 | `piano` | Matrice impatto/sforzo → 3 fasi temporali (settimane 1-2 / mese 1 / mesi 2-3), con le azioni scartate e il perché |
-| `report` | Assembla tutto nel PDF editoriale (Metodo 6): pagella, radar, matrice, piano |
+| `report` | Assembla tutto nel PDF editoriale (Metodo 6): pagella, radar, confronto testa a testa, matrice, piano |
 
 ## Come lavora, in un colpo d'occhio
 

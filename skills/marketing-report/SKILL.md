@@ -1,6 +1,6 @@
 ---
 name: marketing-report
-description: Genera il report cliente in PDF professionale (REPORT-CLIENTE.pdf) dai report della directory corrente, in stile editoriale di fascia alta - copertina full-bleed, pagella a barre, analisi area per area, radar cliente-vs-concorrente, matrice impatto/sforzo, piano 90 giorni. Impaginato con reportlab (serif Cormorant + DM Sans, carta avorio, accento verde pino). Pensato per consulenti e agenzie. Si attiva con /marketing report seguito dal nome del cliente, oppure "preparami il report per il cliente", "documento da consegnare", "report presentabile", "report PDF", "report con i grafici".
+description: Genera il report cliente in PDF professionale (REPORT-CLIENTE.pdf) dai report della directory corrente, in stile editoriale di fascia alta - copertina full-bleed, pagella a barre, analisi area per area, radar cliente-vs-concorrente, griglia di confronto testa a testa coi concorrenti, matrice impatto/sforzo, piano 90 giorni. Impaginato con reportlab (serif Cormorant + DM Sans, carta avorio, accento verde pino). Pensato per consulenti e agenzie. Si attiva con /marketing report seguito dal nome del cliente, oppure "preparami il report per il cliente", "documento da consegnare", "report presentabile", "report PDF", "report con i grafici".
 ---
 
 # /marketing report [nome cliente]
@@ -26,10 +26,13 @@ Se non c'è nessun report: "Non c'è niente da impacchettare. Parti da `/marketi
 2. **Leggi i report** presenti e prendi: tipo business, fotografia as-is, i 5 voti della Pagella + Voto Finale, **l'analisi per area** (cosa funziona/manca/fare, con le evidenze citate) dai blocchi degli agenti, **i problemi che costano di più**, la stima del concorrente principale sulle 5 aree, i concorrenti reali trovati, le mosse della Mappa opportunità (con impatto/sforzo/pertinenza), le fasi del piano 90 giorni.
 3. **Assembla il JSON** secondo lo schema qui sotto. Scrivi tono da consulente: frasi corte, niente gergo, mai cifre in euro inventate.
 4. **Controlla reportlab**: `python3 -c "import reportlab" 2>/dev/null || pip3 install reportlab`.
-5. **Genera il PDF**: scrivi il JSON in un file temporaneo e lancia lo script.
+5. **Genera il PDF**: scrivi il JSON in un file temporaneo e lancia lo script. Lo script vive accanto alla skill installata (`~/.claude/skills/marketing/scripts/`); se stai lavorando dentro il repo, sta in `scripts/`. Risolvi il percorso così, in modo che funzioni in entrambi i casi:
    ```bash
-   python3 scripts/generate_pdf_report.py /tmp/report_data.json REPORT-CLIENTE.pdf
+   GEN="$HOME/.claude/skills/marketing/scripts/generate_pdf_report.py"
+   [ -f "$GEN" ] || GEN="scripts/generate_pdf_report.py"
+   python3 "$GEN" /tmp/report_data.json REPORT-CLIENTE.pdf
    ```
+   I font e l'immagine di copertina di default li trova da solo accanto allo script (`assets/`), qualunque sia la cartella da cui lanci il comando.
 6. **Apri il file**: `open REPORT-CLIENTE.pdf` (su mac). Se `open` non c'è, stampa il path.
 7. **Pulisci** il JSON temporaneo e consegna all'utente il nome del file e due righe su cosa contiene.
 
@@ -75,6 +78,16 @@ Se non c'è nessun report: "Non c'è niente da impacchettare. Parti da `/marketi
   "competitors": [
     {"nome": "...", "dove": "Verona", "fonte": "Registro imprese", "note": "..."}
   ],
+  "confronto": {
+    "concorrenti": ["Osteria Al Ponte", "Trattoria Vecchia Verona", "Locanda 900"],
+    "righe": [
+      {"fattore": "Posizionamento", "tu": "Come vi presentate voi, con le parole del sito.",
+       "loro": ["Come si presenta il primo concorrente.", "Il secondo.", "Il terzo."]},
+      {"fattore": "Prezzi", "tu": "...", "loro": ["...", "...", "..."]},
+      {"fattore": "Riprova sociale", "tu": "Recensioni e numeri veri, dove li mostrate.", "loro": ["...", "...", "..."]},
+      {"fattore": "Contenuti", "tu": "...", "loro": ["...", "...", "..."]}
+    ]
+  },
   "opportunita": [
     {"n": 1, "mossa": "...", "impatto": "alto", "sforzo": "basso", "pertinente": "Sì, perché ..."}
   ],
@@ -95,6 +108,7 @@ Note sui campi:
 - **`problemi`** = i 2-4 problemi che costano di più, ognuno con oggi/costa/sistema. È la sezione "I problemi che costano di più".
 - **`cover_image`** = percorso a una foto per la copertina full-bleed (per la demo `assets/cover-hero.jpg`). Sostituiscila con un'immagine adatta al cliente; se manca, la copertina usa uno sfondo scuro. Deve essere un'immagine con licenza d'uso (Unsplash, foto del cliente, ecc.).
 - `competitor_principale.voti` = i 5 voti stimati del concorrente, nell'ordine Messaggio, Trovabilità, Conversione, Concorrenza, Crescita (per il radar). Prendili dalla tabella "Confronto col concorrente principale (stima)" della Pagella. Se non ci sono, ometti `competitor_principale`.
+- **`confronto`** = la griglia testa a testa (righe = fattori, colonne = voi + fino a 3 concorrenti nominati). `concorrenti` è la lista dei nomi in intestazione; ogni riga di `righe` ha `fattore`, `tu` (la vostra riga, riempitela davvero, non lasciatela vuota) e `loro` (una cella per concorrente, nello stesso ordine di `concorrenti`). Fattori consigliati: Posizionamento, Prezzi, Riprova sociale, Contenuti; cambiali se per quel business contano altre cose. Prendi il contenuto dalla tabella "Confronto a colpo d'occhio" di `ANALISI-COMPETITOR.md` o dalle note dell'agente `analista-competitor`. Ogni cella è breve (una-due frasi). Senza `confronto` la griglia non compare, resta il radar.
 - `opportunita[].impatto` e `sforzo` ∈ {alto, medio, basso} (guidano la matrice). "alto impatto / basso sforzo" = quadrante "Fai subito".
 - Ogni campo mancante viene saltato: niente `aree[].analisi` → niente pagine di analisi; niente `problemi` → niente sezione problemi; ecc.
 
@@ -105,7 +119,7 @@ Un documento A4 multipagina in **stile editoriale di fascia alta** (serif Cormor
 - **I · Sommario** — executive summary + fotografia as-is + **pagella a barre**.
 - **II · Analisi area per area** — la sostanza: per ogni area cosa funziona / cosa manca (con evidenza) / cosa fare (con riscritture). Da `aree[].analisi`.
 - **III · I problemi che costano di più** — da `problemi`.
-- **IV · Voi e i concorrenti** — **radar** cliente vs concorrente (stima) + tabella dei concorrenti reali.
+- **IV · Voi e i concorrenti** — **radar** cliente vs concorrente (stima), poi la **griglia testa a testa** (voi e i concorrenti nominati, fattore per fattore, con la vostra colonna evidenziata), poi la tabella dei concorrenti reali trovati.
 - **V · Le priorità** — **matrice impatto/sforzo** + tabella delle mosse.
 - **VI · Il piano a 90 giorni** — tre fasi + box "decisione richiesta".
 - **VII · Metodologia e fonti dei dati** — le 5 aree e le fonti reali (registro imprese, Places, DataForSEO): è ciò che distingue questo report da un'analisi tirata a indovinare.
