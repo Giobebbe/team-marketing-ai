@@ -26,7 +26,7 @@ Ogni attivita' ha un percorso che il cliente attraversa: ti scopre, ti valuta, t
 
 2. **Chiedi i numeri che l'utente HA.** Bastano tre: quante persone entrano nel percorso in un mese (visite, telefonate, richieste), quante arrivano in fondo (vendite, contratti), e lo scontrino medio. Se non li ha, prosegui lo stesso ma scrivi nel report che la mappa e' qualitativa: MAI inventare percentuali di conversione.
 
-3. **Trova il punto rotto.** Per ogni passaggio guarda i segnali osservabili dal sito e dai numeri:
+3. **Trova il punto rotto.** Per ogni passaggio guarda i segnali osservabili dal sito e dai numeri. Se il segnale e' un elemento "rotto o mancante" (modulo, bottone, link), vale la regola della suite: riproducilo con un gesto reale su un browser renderizzato (molti siti si costruiscono col JavaScript e l'HTML servito inganna); senza browser, etichettalo "osservato sull'HTML servito, non verificato dal vivo".
    - tanti visitatori e pochi contatti: si rompe SUL sito (vai di /marketing landing sulla pagina chiave)
    - tanti contatti e poche vendite: si rompe DOPO il sito (tempi di risposta, preventivo, trattativa)
    - poche visite in assoluto: non e' un problema di funnel, e' un problema di trovabilita' (/marketing seo o /marketing ads)

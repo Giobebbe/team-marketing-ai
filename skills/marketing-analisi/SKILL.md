@@ -5,7 +5,7 @@ description: Analisi marketing completa del sito di una PMI italiana, con Pagell
 
 # /marketing analisi
 
-Il comando di punta della suite. Prende l'url di un sito, capisce che business c'è dietro, va a cercare i concorrenti veri (non quelli immaginati), fa lavorare la squadra di sei agenti in parallelo e consegna una Pagella Marketing con voti, semaforo e le mosse da fare subito.
+Il comando di punta della suite. Prende l'url di un sito, capisce che business c'è dietro, va a cercare i concorrenti veri (non quelli immaginati), fa lavorare la squadra di sei agenti in parallelo, fa la controprova dal vivo dei difetti trovati e consegna una Pagella Marketing con voti, semaforo e le mosse da fare subito.
 
 ## Quando si attiva
 
@@ -81,9 +81,22 @@ Se manca l'url, chiedilo e fermati lì. Non partire con un'analisi generica.
      · media-buyer ............. fatto  ·  dove spendere: Google, non ancora Meta
    ```
 
-5. **Sintesi e pagella.** Raccogli i voti, calcola il Voto Finale come media semplice delle 5 aree, assegna il semaforo per area (verde 8-10, giallo 5-7.9, rosso sotto 5) e scrivi `PAGELLA-MARKETING.md` nella directory corrente dell'utente, seguendo il template qui sotto. Le riscritture del copywriter e le note del media-buyer entrano nel dettaglio delle aree pertinenti.
+5. **La controprova dal vivo, PRIMA della pagella.** Molti siti costruiscono la pagina col JavaScript: quello che gli agenti leggono via WebFetch o curl è l'HTML servito dal server, non sempre la pagina che l'utente vede nel browser. Un modulo "assente" o un title "rotto" nell'HTML servito possono funzionare benissimo nella pagina vera. Per questo, prima di scrivere la pagella, raccogli ogni difetto tecnico dichiarato dagli agenti (modulo o form assente, bottone o ancora che non porta da nessuna parte, link rotto, title sbagliato o mancante, sezione vuota, elemento non trovato) e fai la controprova sulla pagina renderizzata:
+   - Apri la pagina in un browser vero (MCP `chrome-devtools` se disponibile: `new_page` sull'url, poi `evaluate_script`).
+   - Riproduci il gesto dell'utente, non un controllo astratto: clicca davvero il bottone e guarda dove finisce la pagina, segui il link, cerca l'elemento (`document.querySelector`, `document.getElementById`, `document.title`).
+   - **Difetto riprodotto anche dal vivo** → resta nel report come difetto, marcato "confermato sulla pagina renderizzata".
+   - **Difetto NON riprodotto** → si declassa a "fragilità per i crawler senza JavaScript" (pesa per bot e anteprime dei link, non per l'utente), il voto dell'area va ricalcolato di conseguenza e il tabellone mostra la correzione.
+   - **Browser non disponibile** → il rilievo resta ma con l'etichetta "osservato sull'HTML servito, non verificato dal vivo": da solo non può portare un'area in rosso, e il report lo dichiara.
 
-6. **Chiudi il tabellone a terminale.** L'ultima riga del tabellone è la Pagella: Voto Finale, semaforo delle 5 aree in una riga, le 3 mosse della settimana, e il nome del file salvato.
+   Aggiungi al tabellone la riga della controprova, con gli eventuali voti corretti:
+
+   ```
+     fact-check dal vivo ....... 2 difetti verificati col click reale  ·  Conversione 4.5 → 6.0
+   ```
+
+6. **Sintesi e pagella.** Raccogli i voti (già corretti dalla controprova del passo 5), calcola il Voto Finale come media semplice delle 5 aree, assegna il semaforo per area (verde 8-10, giallo 5-7.9, rosso sotto 5) e scrivi `PAGELLA-MARKETING.md` nella directory corrente dell'utente, seguendo il template qui sotto. Le riscritture del copywriter e le note del media-buyer entrano nel dettaglio delle aree pertinenti.
+
+7. **Chiudi il tabellone a terminale.** L'ultima riga del tabellone è la Pagella: Voto Finale, semaforo delle 5 aree in una riga, le 3 mosse della settimana, e il nome del file salvato.
 
    ```
    PAGELLA  ·  Voto Finale 5.6  (giallo)
@@ -99,7 +112,7 @@ Se manca l'url, chiedilo e fermati lì. Non partire con un'analisi generica.
 
 ## Variante rapida
 
-`/marketing analisi rapida <url>`: solo WebFetch della homepage, nessun agente, nessuno script, nessun file. Stampi a terminale, in massimo 25 righe: tipo di business, pagella STIMATA (dichiarata come tale, riga per area con voto e semaforo), le 2-3 cose più urgenti. Serve per farsi un'idea in un minuto, non sostituisce l'analisi completa.
+`/marketing analisi rapida <url>`: solo WebFetch della homepage, nessun agente, nessuno script, nessun file. Stampi a terminale, in massimo 25 righe: tipo di business, pagella STIMATA (dichiarata come tale, riga per area con voto e semaforo), le 2-3 cose più urgenti. Serve per farsi un'idea in un minuto, non sostituisce l'analisi completa. Anche qui vale la regola della vista: nessun "elemento rotto" dichiarato dal solo HTML servito senza l'etichetta.
 
 ## Checklist di valutazione
 
@@ -196,6 +209,12 @@ Lettura a spanne del concorrente più forte sulle 5 aree, per il confronto del r
 | Concorrenza | 5.5 | 6 |
 | Crescita | 5.0 | 6 |
 
+## Verifiche dal vivo
+
+[Ogni difetto tecnico citato nel report, con la vista su cui è stato verificato:
+"confermato sulla pagina renderizzata (click reale)" oppure "osservato sull'HTML servito, non verificato dal vivo".
+Se una verifica ha ribaltato un giudizio degli agenti, dirlo qui: cosa sembrava rotto, cosa è risultato dal vivo, come è cambiato il voto.]
+
 ## Ipotesi dichiarate
 
 - [Ogni assunzione fatta in assenza di numeri forniti dall'utente, scritta a parole]
@@ -203,7 +222,7 @@ Lettura a spanne del concorrente più forte sulle 5 aree, per il confronto del r
 
 ## Casi particolari
 
-- **Sito irraggiungibile o tutto in JavaScript:** riprova una volta, poi chiedi all'utente un url alternativo o una descrizione dell'attività. Mai valutare un sito che non hai letto.
+- **Sito irraggiungibile o tutto in JavaScript:** se WebFetch torna una pagina quasi vuota ma il sito esiste, non è un sito rotto: è un sito costruito col JavaScript. Leggilo dal browser renderizzato (MCP chrome-devtools) invece di giudicare l'HTML servito. Se non hai il browser e il sito resta illeggibile, chiedi all'utente un url alternativo o una descrizione dell'attività. Mai valutare un sito che non hai letto.
 - **P.IVA non trovata:** capita con i siti su piattaforme tipo Wix o con footer minimali. Salta il registro imprese e passa direttamente a competitor_locali.py (se attività locale) o al fallback WebSearch, dichiarandolo nel report.
 - **Chiavi API mancanti:** lo script stampa le istruzioni per ottenerle. Riportale all'utente a fine analisi, ma completa comunque la pagella col fallback: un'analisi con concorrenti presi dal web vale più di nessuna analisi.
 - **Un agente fallisce o torna vuoto:** rilancia solo quello, con lo stesso contesto. Se fallisce di nuovo, compila tu la sua area segnandola come "valutata senza agente dedicato".

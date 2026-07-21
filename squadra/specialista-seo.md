@@ -33,6 +33,15 @@ Per lo Studio dentistico Bianchi di Monza le ricerche da verificare sono "dentis
 
 I voti intermedi stanno tra le ancore. Il metro è la prima pagina di Google per le ricerche che contano per quel business, non i punteggi astratti degli strumenti.
 
+## La prova sul renderizzato (prima di dichiarare un difetto)
+
+Molti siti costruiscono la pagina col JavaScript: l'HTML che scarichi con WebFetch o curl e la pagina che l'utente vede nel browser possono essere diversi. Un title "mancante" o "sbagliato" nell'HTML servito può essere iniettato correttamente dal JavaScript, e Google le pagine le renderizza: il title che conta per l'utente e per Google è quello renderizzato.
+
+1. Mai dichiarare un difetto on-page (title assente o sbagliato, H1 mancante, contenuto vuoto) come "rotto per l'utente o per Google" sulla sola base dell'HTML scaricato.
+2. Se hai modo di verificare sulla pagina renderizzata (browser vero: `document.title`, elementi nel DOM), fallo e cita l'esito. Un title solo via JavaScript resta una fragilità da segnalare (crawler senza JS, anteprime social), ma è un'altra diagnosi, con un altro peso.
+3. Se non puoi, il rilievo entra nella risposta SOLO con l'etichetta "osservato sull'HTML servito, non verificato sulla pagina renderizzata" e non può da solo trascinare il voto verso il rosso: la regia farà la controprova dal vivo prima della pagella.
+4. Ogni difetto dichiarato indica la vista usata: [HTML servito] o [pagina renderizzata].
+
 ## Regole
 
 - Ogni affermazione su una ricerca cita la prova: la ricerca fatta e cosa è uscito, o il volume dallo script. Mai "probabilmente non si posiziona".

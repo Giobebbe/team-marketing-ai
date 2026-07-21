@@ -33,7 +33,7 @@ Tre cose la distinguono:
 
 ## I metodi dietro la suite
 
-Questa è la parte che conta. Sei metodi, ognuno articolato in passi, che la suite applica ogni volta allo stesso modo.
+Questa è la parte che conta. Sette metodi, ognuno articolato in passi, che la suite applica ogni volta allo stesso modo.
 
 ### Metodo 1 · La scala dei dati veri
 
@@ -103,9 +103,20 @@ Le opportunità del Metodo 5 diventano priorità visive in una matrice 2×2, che
 
 Il report finale (`REPORT-CLIENTE.pdf`) è un documento editoriale multipagina: copertina, pagella a barre, analisi area per area con le evidenze citate, **radar del confronto coi concorrenti** e **griglia testa a testa** (voi e i concorrenti nominati, fattore per fattore, con la vostra colonna evidenziata), questa matrice, piano a 90 giorni, e la pagina di metodologia e fonti. Impaginato sempre allo stesso modo: tu compili i dati, lo script fa la grafica.
 
+### Metodo 7 · Il difetto si dichiara solo dopo averlo riprodotto
+
+Molti siti moderni costruiscono la pagina col JavaScript: il file che il server manda e la pagina che l'utente vede possono essere diversi. Uno strumento che legge solo il file può "vedere" un modulo mancante o un titolo sbagliato che nell'uso reale funzionano benissimo. Per questo ogni difetto tecnico passa una controprova prima di finire nel report:
+
+1. **Riprodurre il gesto dell'utente.** Il bottone si clicca davvero, il link si segue, l'elemento si cerca nella pagina renderizzata da un browser vero (via MCP chrome-devtools, se installato).
+2. **Confermato dal vivo** → entra nel report come difetto, marcato "confermato sulla pagina renderizzata".
+3. **Non confermato** → si declassa a fragilità per i robot senza JavaScript (anteprime social, alcuni crawler): vale la pena sistemarla, ma non è "rotto per il cliente". Il voto si ricalcola.
+4. **Browser non disponibile** → il rilievo resta, ma etichettato "osservato sull'HTML servito, non verificato dal vivo", e da solo non può portare un'area in rosso.
+
+L'onestà sulla vista usata è parte del metodo, come l'onestà sulle fonti dei dati (Metodo 1).
+
 ### Il metodo dentro ogni comando
 
-I sei metodi sopra sono le fondamenta condivise. Oltre a quelli, ogni comando applica un suo procedimento specifico: lo trovi per esteso nel file della skill, qui in una riga così sai cosa aspettarti.
+I sette metodi sopra sono le fondamenta condivise. Oltre a quelli, ogni comando applica un suo procedimento specifico: lo trovi per esteso nel file della skill, qui in una riga così sai cosa aspettarti.
 
 | Comando | Il metodo, in breve |
 |---|---|
@@ -156,6 +167,8 @@ bash install.sh
 Poi riavvia Claude Code. I comandi `/marketing` saranno disponibili in qualsiasi progetto.
 
 Per il solo report PDF serve una libreria: `pip3 install -r requirements.txt` (reportlab). Tutto il resto gira con Python 3 puro, zero dipendenze.
+
+Consigliato ma opzionale: il browser pilotato per la controprova dal vivo dei difetti (Metodo 7). Basta avere l'MCP `chrome-devtools` configurato in Claude Code (`npx -y chrome-devtools-mcp@latest`). Senza, la suite funziona comunque: i rilievi tecnici escono etichettati "non verificati dal vivo" invece che dichiarati rotti.
 
 ## I comandi, uno per uno
 

@@ -35,6 +35,15 @@ Percorso tipo per la Trattoria Dal Moro di Verona, pensando a chi arriva da tele
 
 Se per prenotare servono quattro click, il modulo chiede sette campi e il numero non è cliccabile, le tre evidenze che contano le hai già trovate. Il voto nasce dal percorso fatto davvero, mai dall'impressione estetica del sito.
 
+## La prova sul renderizzato (prima di dichiarare un difetto)
+
+Molti siti costruiscono la pagina col JavaScript: l'HTML che scarichi con WebFetch o curl e la pagina che l'utente vede nel browser possono essere diversi. Un modulo assente nell'HTML scaricato può esistere benissimo nella pagina vera, e un'ancora che lì sembra morta può funzionare.
+
+1. Mai dichiarare un difetto tecnico (modulo assente, bottone o ancora che non porta da nessuna parte, link rotto, sezione vuota) come "rotto per l'utente" sulla sola base dell'HTML scaricato.
+2. Se hai modo di verificare sulla pagina renderizzata (browser vero), riproduci il gesto: clicca, segui il link, cerca l'elemento. Cita l'esito.
+3. Se non puoi, il rilievo entra nella risposta SOLO con l'etichetta "osservato sull'HTML servito, non verificato sulla pagina renderizzata" e non può da solo trascinare il voto verso il rosso: la regia farà la controprova dal vivo prima della pagella.
+4. Ogni difetto dichiarato indica la vista usata: [HTML servito] o [pagina renderizzata].
+
 ## Regole
 
 - Ogni evidenza viene dal percorso fatto davvero: pagina visitata, cosa hai cliccato, cosa è successo. Cita il testo dei bottoni e dei moduli tra virgolette.
