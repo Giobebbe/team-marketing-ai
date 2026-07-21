@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --blue:#2f66d6; --blue2:#2b5fd0; --red:#e21d48; --green:#17a35b;
+    --ink:#1b1e2b; --ink2:#2a2e3c; --grey:#6a7180; --grey2:#8a909c;
+    --line:#e7e9ef; --panel:#f6f7f9; --panelbd:#e9ebf0;
+    --dotG:#1ea55f; --dotY:#f2b01e; --dotR:#e5342b;
+    --mono:"SF Mono",ui-monospace,Menlo,Monaco,"Cascadia Code",monospace;
+  }
+  html,body{ background:#fff; }
+  .page{
+    width:1660px; padding:44px 46px 34px; background:#fff;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink); -webkit-font-smoothing:antialiased;
+  }
+  /* header */
+  .h1{ text-align:center; font-size:42px; font-weight:800; letter-spacing:-.5px; }
+  .h1 .b{ color:var(--blue); } .h1 .r{ color:var(--red); }
+  .sub{ text-align:center; color:var(--grey); font-size:19px; margin-top:10px; }
+  /* generic panel */
+  .panel{ background:var(--panel); border:1px solid var(--panelbd); border-radius:20px; margin-top:26px; }
+  .band{ display:grid; grid-template-columns:132px 1fr; align-items:center; padding:22px 26px; }
+  .band + .band{ border-top:1px solid var(--line); }
+  .blabel{ font-size:15px; font-weight:800; letter-spacing:.5px; color:var(--grey2); }
+  .row6{ display:grid; grid-template-columns:repeat(6,1fr); gap:15px; }
+  .card{ background:#fff; border:1px solid var(--line); border-radius:13px; padding:18px 18px 20px; }
+  .card .ic{ font-size:30px; line-height:1; }
+  .card .nm{ font-weight:800; font-size:18px; margin-top:12px; letter-spacing:-.2px; }
+  .card .ds{ color:var(--grey); font-size:14px; line-height:1.42; margin-top:7px; }
+  /* come lavora */
+  .flow{ display:grid; grid-template-columns:1fr 26px 1fr 26px 1fr 26px 1fr 26px 1fr 26px 1fr; align-items:center; }
+  .arrow{ text-align:center; color:#c3c8d2; font-size:22px; }
+  .step .st{ font-weight:800; font-size:17.5px; margin-top:11px; }
+  .step .ic{ font-size:28px; }
+  .step ul{ list-style:none; margin-top:8px; }
+  .step li{ color:var(--grey); font-size:13.5px; line-height:1.5; padding-left:12px; position:relative; }
+  .step li::before{ content:"•"; position:absolute; left:0; color:#b7bdc8; }
+  /* trio */
+  .trio{ display:grid; grid-template-columns:1.04fr 1.14fr .82fr; gap:22px; margin-top:26px; }
+  .sub-p{ border:1px solid var(--panelbd); border-radius:16px; overflow:hidden; background:#fff; }
+  .cap{ color:#fff; font-weight:800; font-size:16px; letter-spacing:.4px; padding:15px 20px; }
+  .cap.blue{ background:var(--blue); } .cap.red{ background:var(--red); } .cap.green{ background:var(--green); }
+  .body{ padding:18px 20px 20px; }
+  /* pagella */
+  .prow{ display:flex; align-items:center; justify-content:space-between; padding:9px 0; }
+  .prow + .prow{ border-top:1px solid #f0f1f4; }
+  .prow .lab{ font-size:15px; } .prow .lab b{ font-weight:800; }
+  .prow .lab span{ color:var(--grey); }
+  .prow .sc{ display:flex; align-items:center; gap:9px; font-weight:800; font-size:15px; white-space:nowrap; }
+  .dot{ width:11px; height:11px; border-radius:50%; display:inline-block; }
+  .note{ color:var(--grey); font-size:14px; margin-top:12px; line-height:1.4; }
+  .note b{ color:var(--ink); }
+  /* dati veri */
+  .dv{ border:1px solid var(--line); border-radius:11px; padding:13px 15px; display:flex; gap:14px; align-items:flex-start; }
+  .dv + .dv{ margin-top:11px; }
+  .dv .lg{ flex:0 0 auto; display:flex; align-items:center; height:34px; }
+  .dv .tx b{ font-size:15px; } .dv .tx p{ color:var(--grey); font-size:13.5px; line-height:1.42; margin-top:3px; }
+  .lo-openapi{ background:#17141f; color:#fff; border-radius:8px; padding:7px 11px; font-weight:700; font-size:14px; display:inline-flex; gap:6px; align-items:center; }
+  .lo-openapi .m{ color:#8f7bff; font-family:var(--mono); font-weight:800; }
+  .lo-gp{ font-weight:800; font-size:15px; color:#3c4043; display:inline-flex; align-items:center; gap:7px; }
+  .lo-gp .pin{ font-size:20px; }
+  .lo-ds{ font-weight:800; font-size:18px; letter-spacing:-.3px; }
+  .lo-ds .b{ color:#1667c9; } .lo-ds .o{ color:#f2892e; }
+  .dvnote{ color:var(--grey); font-size:13.5px; margin-top:13px; line-height:1.45; }
+  /* perché */
+  .pf{ font-size:15px; padding:8px 0; display:flex; gap:11px; align-items:flex-start; line-height:1.4; }
+  .pf .ck{ color:var(--green); font-weight:800; }
+  /* commands */
+  .cmds{ display:grid; grid-template-columns:132px 1fr; padding:22px 26px; align-items:center; }
+  .grid4{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .cmd{ background:#fff; border:1px solid var(--line); border-radius:11px; padding:15px 17px; }
+  .cmd .c{ font-family:var(--mono); color:var(--blue2); font-weight:700; font-size:16px; }
+  .cmd .c .sl{ color:#7aa0e6; }
+  .cmd .d{ color:var(--grey); font-size:13px; margin-top:6px; line-height:1.35; }
+  .install{ grid-column:1 / -1; background:#f0f2f6; border:1px solid var(--line); border-radius:11px; padding:14px 17px; margin-top:2px; }
+  .install .c{ font-family:var(--mono); color:var(--ink); font-weight:700; font-size:16px; }
+  .install .d{ color:var(--grey); font-size:13px; margin-top:5px; }
+  .foot{ text-align:center; color:var(--grey2); font-size:14px; margin-top:22px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="h1">Team Marketing AI: <span class="b">6 specialisti</span> + <span class="r">dati veri</span></div>
+  <div class="sub">La squadra di marketing dentro Claude Code, in italiano, per le PMI italiane. Un comando: /marketing</div>
+
+  <div class="panel">
+    <div class="band">
+      <div class="blabel">LA SQUADRA</div>
+      <div class="row6">
+        <div class="card"><div class="ic">🧭</div><div class="nm">stratega-marketing</div><div class="ds">Messaggio e Crescita: si capisce cosa vendi? hai un sistema per crescere?</div></div>
+        <div class="card"><div class="ic">🔍</div><div class="nm">analista-competitor</div><div class="ds">Concorrenza: confronto coi concorrenti reali, mai inventati</div></div>
+        <div class="card"><div class="ic">📈</div><div class="nm">specialista-seo</div><div class="ds">Trovabilità: chi ti cerca ti trova? volumi di ricerca veri</div></div>
+        <div class="card"><div class="ic">✍️</div><div class="nm">copywriter-pmi</div><div class="ds">Riscrive i 3 testi più deboli del sito, prima e dopo</div></div>
+        <div class="card"><div class="ic">🎯</div><div class="nm">esperto-conversioni</div><div class="ds">Conversione: dal visitatore al contatto, moduli e CTA</div></div>
+        <div class="card"><div class="ic">📣</div><div class="nm">media-buyer</div><div class="ds">Sei pronto per le ads? con che budget minimo sensato?</div></div>
+      </div>
+    </div>
+    <div class="band">
+      <div class="blabel">COME LAVORA</div>
+      <div class="flow">
+        <div class="step"><div class="ic">🌐</div><div class="st">1. Legge il sito</div><ul><li>homepage + pagine chiave</li><li>tipo di business (5 tipi)</li></ul></div>
+        <div class="arrow">→</div>
+        <div class="step"><div class="ic">🧾</div><div class="st">2. Estrae la P.IVA</div><ul><li>dal footer, obbligo di legge</li><li>validata col check-digit</li></ul></div>
+        <div class="arrow">→</div>
+        <div class="step"><div class="ic">🗄️</div><div class="st">3. Raccoglie dati veri</div><ul><li>registro imprese</li><li>Places + volumi di ricerca</li></ul></div>
+        <div class="arrow">→</div>
+        <div class="step"><div class="ic">👥</div><div class="st">4. Lancia la squadra</div><ul><li>6 agenti in parallelo</li><li>voti motivati con citazioni</li></ul></div>
+        <div class="arrow">→</div>
+        <div class="step"><div class="ic">🚦</div><div class="st">5. Compila la pagella</div><ul><li>5 aree, voto 1-10</li><li>semaforo per area</li></ul></div>
+        <div class="arrow">→</div>
+        <div class="step"><div class="ic">📋</div><div class="st">6. Consegna il piano</div><ul><li>le 3 mosse della settimana</li><li>report pronti per il cliente</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="trio">
+    <div class="sub-p">
+      <div class="cap blue">PAGELLA MARKETING</div>
+      <div class="body">
+        <div class="prow"><div class="lab"><b>Messaggio</b> <span>· si capisce cosa vendi e a chi?</span></div><div class="sc">7/10 <span class="dot" style="background:var(--dotY)"></span></div></div>
+        <div class="prow"><div class="lab"><b>Trovabilità</b> <span>· chi ti cerca ti trova?</span></div><div class="sc">4/10 <span class="dot" style="background:var(--dotR)"></span></div></div>
+        <div class="prow"><div class="lab"><b>Conversione</b> <span>· chi ti trova diventa cliente?</span></div><div class="sc">8/10 <span class="dot" style="background:var(--dotG)"></span></div></div>
+        <div class="prow"><div class="lab"><b>Concorrenza</b> <span>· come sei messo vs chi fa lo stesso?</span></div><div class="sc">6/10 <span class="dot" style="background:var(--dotY)"></span></div></div>
+        <div class="prow"><div class="lab"><b>Crescita</b> <span>· sistema o episodi?</span></div><div class="sc">5/10 <span class="dot" style="background:var(--dotY)"></span></div></div>
+        <div class="note"><b>Voto finale = media semplice.</b> Verde 8-10 · giallo 5-7.9 · rosso sotto 5</div>
+      </div>
+    </div>
+
+    <div class="sub-p">
+      <div class="cap red">DATI VERI, NON OPINIONI</div>
+      <div class="body">
+        <div class="dv"><div class="lg"><span class="lo-openapi"><span class="m">&gt;_</span> openapi</span></div><div class="tx"><b>Registro imprese (openapi.com)</b><p>concorrenti UFFICIALI: stesso ATECO, stessa provincia, con dipendenti e fatturato</p></div></div>
+        <div class="dv"><div class="lg"><span class="lo-gp"><span class="pin">📍</span> Google Places</span></div><div class="tx"><b>Google Places</b><p>per le attività locali: chi c'è in zona, con recensioni e valutazioni reali</p></div></div>
+        <div class="dv"><div class="lg"><span class="lo-ds">DataFor<span class="b">SE</span><span class="o">O</span></span></div><div class="tx"><b>DataForSEO</b><p>volumi di ricerca mensili veri in Italia, non stime a occhio</p></div></div>
+        <div class="dvnote">Senza chiavi API funziona lo stesso: ripiega sulla ricerca web e lo dichiara nel report.</div>
+      </div>
+    </div>
+
+    <div class="sub-p">
+      <div class="cap green">PERCHÉ FUNZIONA</div>
+      <div class="body">
+        <div class="pf"><span class="ck">✓</span> Tetto rigido: max 2 chiamate API a run</div>
+        <div class="pf"><span class="ck">✓</span> Costo stimato stampato a ogni esecuzione</div>
+        <div class="pf"><span class="ck">✓</span> Mai numeri in euro inventati</div>
+        <div class="pf"><span class="ck">✓</span> Python puro, zero dipendenze</div>
+        <div class="pf"><span class="ck">✓</span> Report in italiano, pronti da consegnare</div>
+        <div class="pf"><span class="ck">✓</span> Fasce gratuite: uso normale = 0 €</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="cmds">
+      <div class="blabel">I 12 COMANDI</div>
+      <div class="grid4">
+        <div class="cmd"><div class="c"><span class="sl">/</span>marketing analisi</div><div class="d">PAGELLA-MARKETING.md · la squadra al completo</div></div>
+        <div class="cmd"><div class="c"><span class="sl">/</span>marketing competitor</div><div class="d">ANALISI-COMPETITOR.md · concorrenti veri</div></div>
+        <div class="cmd"><div class="c"><span class="sl">/</span>marketing seo</div><div class="d">PIANO-SEO.md · audit + volumi + 8 settimane</div></div>
+        <div class="cmd"><div class="c"><span class="sl">/</span>marketing contenuti</div><div class="d">PIANO-CONTENUTI.md · 30 giorni, 3 pilastri</div></div>
+        <div class="cmd"><div class="c"><span class="sl">/</span>marketing email</div><div class="d">SEQUENZE-EMAIL.md · 11 email già scritte</div></div>
+        <div class="cmd"><div class="c"><span class="sl">/</span>marketing social</div><div class="d">CALENDARIO-SOCIAL.md · 4 settimane di post</div></div>
+        <div class="cmd"><div class="c"><span class="sl">/</span>marketing ads</div><div class="d">CAMPAGNE-ADS.md · budget piccoli, annunci pronti</div></div>
+        <div class="cmd"><div class="c"><span class="sl">/</span>marketing landing</div><div class="d">ANALISI-LANDING.md · 7 punti + riscritture</div></div>
+        <div class="cmd"><div class="c"><span class="sl">/</span>marketing funnel</div><div class="d">ANALISI-FUNNEL.md · dove si perdono i clienti</div></div>
+        <div class="cmd"><div class="c"><span class="sl">/</span>marketing opportunita</div><div class="d">MAPPA-OPPORTUNITA.md · tutto il possibile</div></div>
+        <div class="cmd"><div class="c"><span class="sl">/</span>marketing piano</div><div class="d">PIANO-90-GIORNI.md · matrice impatto/sforzo</div></div>
+        <div class="cmd"><div class="c"><span class="sl">/</span>marketing report</div><div class="d">REPORT-CLIENTE.pdf · per consulenti e agenzie</div></div>
+        <div class="install"><div class="c">bash install.sh</div><div class="d">installa tutto in ~/.claude in 10 secondi</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">github.com/Giobebbe/team-marketing-ai · licenza MIT</div>
+</div>
+</body>
+</html>
